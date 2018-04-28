@@ -1,22 +1,35 @@
-def port_scanner():
-    """
-    write a port scanner using nmap library
-    for scanning 10 arbitrary hosts and and ports between
-    21-1000 then write the result to a file using
-    write_to_file function
-    """
 
-def write_to_file(contents):
-    """
-    first remove the pass from function body
-    then write your code
-    :param contents: the result that should be written to file
-    :return: true if the writing successfull and false if can't
-    """
+import nmap
+
+def port_scanner(ports):
+    nm = nmap.PortScanner()
+    nm.scan(ports, '21-1000')
+    for host_names in nm.all_hosts():
+        ports = nm[host_names].get('tcp')
+        benevis(ports)
+
+    return ports
+
+
+def benevis(contents):
+    f = open('javab', 'w')
+    pasokh = str(contents)
+    f.write(pasokh)
+
     pass
 
 
 def main():
-    port_scanner()
+    hosts = [
+        'fileniko.com'
+        'appniko.com'
+        'tvniko.com'
+        'iaun.ac.ir'
+        'hadipoor.ir'
+        'google.com',
+    ]
+
+    for host_name in hosts:
+        port_scanner(host_name)
 
 main()
